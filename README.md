@@ -17,7 +17,7 @@
 ابتدا در سرور ایران باید این دستورات رو وارد کنیم تا تانل 6to4 در سرور ایران ، برقرار شود .
 >راهنمایی : (در قسمت ip-Kharej ، آیپی ورژن 4 پابلیک سرور خارج رو قرار میدیم و در بخش ip-Iran ، آیپی ورژن 4 پابلیک ایران رو قرار میدیم)
 ```shell
-ip tunnel add 6to4_To_KH mode sit remote IPv4-Kharej local IPv4-Iran
+ip tunnel add 6to4_To_KH mode sit remote 5.75.248.192 local 87.107.155.97
 ip -6 addr add fc00::1/64 dev 6to4_To_KH
 ip link set 6to4_To_KH mtu 1480
 ip link set 6to4_To_KH up
@@ -31,7 +31,7 @@ ip link set 6to4_To_KH up
 >راهنمایی : (در قسمت ip-Kharej ، آیپی ورژن 4 پابلیک سرور خارج رو قرار میدیم و در بخش ip-Iran ، آیپی ورژن 4 پابلیک ایران رو قرار میدیم)
 
 ```shell 
-ip tunnel add 6to4_To_IR mode sit remote ip-Iran local ip-Kharej
+ip tunnel add 6to4_To_IR mode sit remote 87.107.155.97 local 5.75.248.192
 ip -6 addr add fc00::2/64 dev 6to4_To_IR
 ip link set 6to4_To_IR mtu 1480
 ip link set 6to4_To_IR up
@@ -139,7 +139,7 @@ sudo nano /etc/rc.local
 - متن زیر را در فایل قرار میدیم و فایل رو ذخیره میکنیم : 
 ```shell
 #! /bin/bash
-ip tunnel add 6to4_To_KH mode sit remote IPv4-Kharej local IPv4-Iran
+ip tunnel add 6to4_To_KH mode sit remote 5.75.248.192 local 87.107.155.97
 ip -6 addr add fc00::1/64 dev 6to4_To_KH
 ip link set 6to4_To_KH mtu 1480
 ip link set 6to4_To_KH up
@@ -176,7 +176,7 @@ sudo nano /etc/rc.local
 - متن زیر را در فایل قرار میدیم و فایل رو ذخیره میکنیم : 
 ```shell
 #! /bin/bash
-ip tunnel add 6to4_To_IR mode sit remote ip-Iran local ip-Kharej
+ip tunnel add 6to4_To_IR mode sit remote 87.107.155.97 local 5.75.248.192
 ip -6 addr add fc00::2/64 dev 6to4_To_IR
 ip link set 6to4_To_IR mtu 1480
 ip link set 6to4_To_IR up
